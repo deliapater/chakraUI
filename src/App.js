@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, VStack, Text } from '@chakra-ui/react';
+import { Box, Button, Input, VStack, Text, useColorMode, Flex } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState("");
+  const { colorMode, toggleColorMode } = useColorMode();
+
 
   const handleSubmit = () => {
     setSubmittedValue(inputValue);
@@ -29,6 +32,11 @@ function App() {
           You submitted: {submittedValue}
         </Text>
       )}
+      <Flex justify="center" mt={4}>
+            <Button onClick={toggleColorMode} variant="outline" size="sm">
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />} Toggle Mode
+            </Button>
+      </Flex>
     </VStack>
   );
 }
