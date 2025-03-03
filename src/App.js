@@ -8,12 +8,14 @@ import {
   useColorMode,
   Flex,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState("");
   const { colorMode, toggleColorMode } = useColorMode();
+  const MotionBox = motion(Box);
 
   const handleSubmit = () => {
     setSubmittedValue(inputValue);
@@ -63,6 +65,24 @@ function App() {
         >
           {colorMode === "light" ? <MoonIcon /> : <SunIcon />} Toggle Mode
         </Button>
+      </Flex>
+      <Flex>
+        <MotionBox
+          w="100px"
+          h="100px"
+          bg="teal.500"
+          mt={10}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          color="white"
+          borderRadius="md"
+          cursor="pointer"
+          whileHover={{ scale: 1.2 }} // Animates when hovered
+          whileTap={{ scale: 0.9 }} // Animates when clicked
+        >
+          Motion Box
+        </MotionBox>
       </Flex>
     </VStack>
   );
